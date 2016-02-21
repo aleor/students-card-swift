@@ -24,7 +24,22 @@ class MainViewController: UIViewController {
         
         resultLabel.text = login! + " " + password!
         
+        
+        var URL: NSURL = NSURL(string: "http://obrkarta/auth/")!
+        var request:NSMutableURLRequest = NSMutableURLRequest(URL:URL)
+        request.HTTPMethod = "POST"
+        
+        var bodyData = "login=10409969&password=Evelina2005"
+        request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
+                {
+                    (response, data, error) in
+                    print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+        }
+        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
