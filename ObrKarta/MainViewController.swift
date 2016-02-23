@@ -24,12 +24,14 @@ class MainViewController: UIViewController {
         
         resultLabel.text = login! + " " + password!
         
+        let URL: NSURL = NSURL(string: "http://obrkarta.ru/auth/")!
         
-        var URL: NSURL = NSURL(string: "http://obrkarta/auth/")!
-        var request:NSMutableURLRequest = NSMutableURLRequest(URL:URL)
+        let request:NSMutableURLRequest = NSMutableURLRequest(URL:URL)
+        
         request.HTTPMethod = "POST"
         
-        var bodyData = "login=10409969&password=Evelina2005"
+        let bodyData = "login=\(login)&password=\(password)"
+        
         request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
