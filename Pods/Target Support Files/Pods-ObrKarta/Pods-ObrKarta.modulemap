@@ -1,0 +1,6 @@
+framework module Pods_ObrKarta {
+  umbrella header "Pods-ObrKarta-umbrella.h"
+
+  export *
+  module * { export * }
+}
