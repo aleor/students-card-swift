@@ -31,7 +31,8 @@ class MainViewController: UIViewController {
         
         request.HTTPMethod = "POST"
         
-        let bodyData = "login=\(login)&password=\(password)"
+        let bodyData = "login=\(login!)&password=\(password!)"
+        print(bodyData)
         
         request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
         
