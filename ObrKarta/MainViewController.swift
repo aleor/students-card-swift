@@ -41,13 +41,17 @@ class MainViewController: UIViewController {
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
                 {
                     (response, data, error) in
-                    print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+                    //print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+                    let doc = TFHpple(HTMLData: data!)
+                    let xPath = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
+                    let elements = doc.searchWithXPathQuery(xPath)
+                    
+                    print (elements)
+                    
         }
         
         //let data = NSData(contentsOfFile: "page.html")
         
-        //let document = TFHpple(HTMLData: data)
-        //let elements = doc.search("//a[@class='myClass']")
         
     }
     
