@@ -8,6 +8,9 @@
 
 import UIKit
 import Alamofire
+import hpple
+
+
 
 class MainViewController: UIViewController {
 
@@ -35,12 +38,16 @@ class MainViewController: UIViewController {
         print(bodyData)
         
         request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
-        
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
                 {
                     (response, data, error) in
                     print(NSString(data: data!, encoding: NSUTF8StringEncoding))
         }
+        
+        //let data = NSData(contentsOfFile: "page.html")
+        
+        //let document = TFHpple(HTMLData: data)
+        //let elements = doc.search("//a[@class='myClass']")
         
     }
     

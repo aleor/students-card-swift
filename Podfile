@@ -5,5 +5,6 @@
 
 target 'ObrKarta' do
 pod 'Alamofire', '3.2.0'
+pod 'hpple', '0.2.0'
 end
 

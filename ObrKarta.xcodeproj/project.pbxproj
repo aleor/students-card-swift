@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11BA9F391C83949700E36155 /* Obrkarta-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Obrkarta-Bridging-Header.h"; sourceTree = "<group>"; };
 		11E207701C7A51240012180C /* ObrKarta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObrKarta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11E207731C7A51240012180C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11E207781C7A51240012180C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 				11E2077C1C7A51240012180C /* LaunchScreen.storyboard */,
 				11E2077F1C7A51240012180C /* Info.plist */,
 				11E207851C7A52420012180C /* MainViewController.swift */,
+				11BA9F391C83949700E36155 /* Obrkarta-Bridging-Header.h */,
 			);
 			path = ObrKarta;
 			sourceTree = "<group>";
@@ -329,6 +331,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = arvalea.ObrKarta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Obrkarta/Obrkarta-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 			};
 			name = Debug;
 		};
@@ -342,6 +346,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = arvalea.ObrKarta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Obrkarta/Obrkarta-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 			};
 			name = Release;
 		};

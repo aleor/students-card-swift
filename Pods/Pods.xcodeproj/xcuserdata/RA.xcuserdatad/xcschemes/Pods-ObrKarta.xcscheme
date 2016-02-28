@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3CAAB1BD5416CEA6B0D94374'
+               BlueprintIdentifier = '1FAD359898178B87C6E306A6'
                BlueprintName = 'Pods-ObrKarta'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_ObrKarta.framework'>
