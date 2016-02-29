@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -17,31 +18,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10409969" borderStyle="roundedRect" placeholder="login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V1A-Gp-SPS">
-                                <rect key="frame" x="20" y="58" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10409969" borderStyle="roundedRect" placeholder="login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V1A-Gp-SPS">
+                                <rect key="frame" x="20" y="60" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Evelina2005" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCM-HT-WUx">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Evelina2005" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCM-HT-WUx">
                                 <rect key="frame" x="20" y="110" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dv7-Tt-Y6C">
-                                <rect key="frame" x="20" y="192" width="280" height="30"/>
-                                <state key="normal" title="Check balance"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dv7-Tt-Y6C">
+                                <rect key="frame" x="16" y="170" width="288" height="30"/>
+                                <state key="normal" title="Проверить баланс"/>
                                 <connections>
                                     <action selector="checkBalanceButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gBm-YM-KQP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ued-Ti-qUt">
-                                <rect key="frame" x="20" y="284" width="280" height="91"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ued-Ti-qUt">
+                                <rect key="frame" x="16" y="230" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Cu2-PN-KDj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="dv7-Tt-Y6C" secondAttribute="trailing" id="0qP-He-o3i"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ued-Ti-qUt" secondAttribute="trailing" id="4id-i4-HlS"/>
+                            <constraint firstItem="gCM-HT-WUx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="IZ1-CW-Bpa"/>
+                            <constraint firstAttribute="trailing" secondItem="V1A-Gp-SPS" secondAttribute="trailing" constant="20" id="IfI-LY-PWg"/>
+                            <constraint firstItem="V1A-Gp-SPS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="KHe-vp-quv"/>
+                            <constraint firstAttribute="trailing" secondItem="gCM-HT-WUx" secondAttribute="trailing" constant="20" id="QCZ-IW-eb8"/>
+                            <constraint firstItem="ued-Ti-qUt" firstAttribute="top" secondItem="dv7-Tt-Y6C" secondAttribute="bottom" constant="30" id="cBw-k9-RQN"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="dv7-Tt-Y6C" secondAttribute="leading" id="hAm-QP-3IL"/>
+                            <constraint firstItem="gCM-HT-WUx" firstAttribute="top" secondItem="V1A-Gp-SPS" secondAttribute="bottom" constant="20" id="hF2-AH-VUY"/>
+                            <constraint firstItem="V1A-Gp-SPS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="l6b-GD-pJS"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ued-Ti-qUt" secondAttribute="leading" id="qHA-Mb-ooD"/>
+                            <constraint firstItem="dv7-Tt-Y6C" firstAttribute="top" secondItem="gCM-HT-WUx" secondAttribute="bottom" constant="30" id="wVj-d1-eCv"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -52,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="321"/>
+            <point key="canvasLocation" x="287" y="327"/>
         </scene>
     </scenes>
 </document>
