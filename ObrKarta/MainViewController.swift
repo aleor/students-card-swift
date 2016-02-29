@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
         
         let password = PasswordTextBox.text
         
-        resultLabel.text = login! + " " + password!
+        //resultLabel.text = login! + " " + password!
         
         let URL: NSURL = NSURL(string: "http://obrkarta.ru/auth/")!
         
@@ -44,13 +44,22 @@ class MainViewController: UIViewController {
                     //print(NSString(data: data!, encoding: NSUTF8StringEncoding))
                     let doc = TFHpple(HTMLData: data!)
                     let xPath = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
-                    let elements = doc.searchWithXPathQuery(xPath)
+                    if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement]
+                    {
+                        //print(elements)
+                        for element in elements {
+                            if let content = element.text()
+                            {
+                            print(content)
+                                self.resultLabel.text = "Баланс: \(content)"
+                            }
+                        }
+                    }
                     
-                    print (elements)
+                    //print (elements)
                     
         }
         
-        //let data = NSData(contentsOfFile: "page.html")
         
         
     }
