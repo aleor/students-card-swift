@@ -54,20 +54,22 @@ class MainViewController: UIViewController {
                     
                     //for debug
                     //print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-                    
+                    print(error)
                     
                     let doc = TFHpple(HTMLData: data!)
                     let xPath = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
                     if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement]
                     {
+                        if elements.isEmpty {
+                            self.resultLabel.text = "Информация о балансе не найдена. Проверьте правильность логина и пароля."
+                            return
+                        }
+                        
                         for element in elements {
                             if let content = element.text()
                             {
                             print(content)
                                 self.resultLabel.text = "Баланс: \(content)"
-                            }
-                            else {
-                                self.resultLabel.text = "Информация о балансе не найдена"
                             }
                         }
                     }
