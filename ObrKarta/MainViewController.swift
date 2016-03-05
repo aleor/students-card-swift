@@ -20,13 +20,23 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     
+    func showAlert(message: String) {
+        
+    }
+    
     @IBAction func checkBalanceButton(sender: UIButton) {
         
-        let login = loginTextBox.text
+        guard let login = loginTextBox.text where !login.isEmpty else {
+            showAlert("Необходимо ввести логин")
+            print("login!")
+            return
+        }
         
-        let password = PasswordTextBox.text
-        
-        //resultLabel.text = login! + " " + password!
+        guard let password = PasswordTextBox.text where !password.isEmpty else {
+            showAlert("Необходимо ввести пароль")
+            print("password!")
+            return
+        }
         
         let URL: NSURL = NSURL(string: "http://obrkarta.ru/auth/")!
         
@@ -34,36 +44,39 @@ class MainViewController: UIViewController {
         
         request.HTTPMethod = "POST"
         
-        let bodyData = "login=\(login!)&password=\(password!)"
-        print(bodyData)
+        let bodyData = "login=\(login)&password=\(password)"
         
         request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+        
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
                 {
                     (response, data, error) in
+                    
+                    //for debug
                     //print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+                    
+                    
                     let doc = TFHpple(HTMLData: data!)
                     let xPath = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
                     if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement]
                     {
-                        //print(elements)
                         for element in elements {
                             if let content = element.text()
                             {
                             print(content)
                                 self.resultLabel.text = "Баланс: \(content)"
                             }
+                            else {
+                                self.resultLabel.text = "Информация о балансе не найдена"
+                            }
                         }
                     }
-                    
-                    //print (elements)
-                    
         }
-        
-        
-        
     }
     
+    
+    
+    ///html/body/div[5]/div/div[1]/div[1]/div/div
     override func viewDidLoad() {
         super.viewDidLoad()
     }
