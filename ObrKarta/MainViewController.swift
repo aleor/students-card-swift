@@ -96,12 +96,16 @@ class MainViewController: UIViewController {
                     for tableRow in tableRows {
                         if let tableData = tableRow.childrenWithClassName("table_td") as? [TFHppleElement] {
                             for singleTableData in tableData {
-                                if let list = singleTableData.childrenWithTagName("ul") as? [TFHppleElement] {
-                                    if list.count > 0
+                                if let unorderedLists = singleTableData.childrenWithTagName("ul") as? [TFHppleElement] {
+                                    if unorderedLists.count > 0
                                     {
-                                    for listItem in list {
-                                        print(listItem.raw)
-                                        print(listItem.text())
+                                    for unorderedList in unorderedLists {
+                                        print(unorderedList.parent.raw)
+                                        if let listItems = unorderedList.childrenWithTagName("li") as? [TFHppleElement] {
+                                            for listItem in listItems {
+                                                print(listItem.text())
+                                            }
+                                        }
                                         }
                                     }
                                     else
