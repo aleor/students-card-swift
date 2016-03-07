@@ -47,6 +47,12 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IHz-iA-xfF">
                                 <rect key="frame" x="150" y="148" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLF-0F-7A6">
+                                <rect key="frame" x="20" y="324" width="280" height="224"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -70,6 +76,7 @@
                     <connections>
                         <outlet property="PasswordTextBox" destination="gCM-HT-WUx" id="P0A-ln-SY8"/>
                         <outlet property="activityViewIndicator" destination="IHz-iA-xfF" id="oBG-B7-m1f"/>
+                        <outlet property="lastPurchaseLabel" destination="VLF-0F-7A6" id="dhE-E4-VJB"/>
                         <outlet property="loginTextBox" destination="V1A-Gp-SPS" id="e4b-Ns-X3P"/>
                         <outlet property="resultLabel" destination="ued-Ti-qUt" id="OwS-QK-nBy"/>
                     </connections>

@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var activityViewIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var lastPurchaseLabel: UILabel!
     @IBOutlet weak var PasswordTextBox: UITextField!
     
     @IBOutlet weak var loginTextBox: UITextField!
@@ -51,7 +52,7 @@ class MainViewController: UIViewController {
                 
                 guard response.result.isSuccess else {
                     print("Не удается соединиться с сервером: \(response.result.error)")
-                    UIHelper.displayAlert("Не удается соединиться с сервером", alertMessage: "Попробуйте повторить запрос через некоторое время", viewController: self)
+                    UIHelper.displayAlert("Нет соединения", alertMessage: "Попробуйте повторить запрос позднее", viewController: self)
                     //completion(nil)
                     return
                 }
@@ -78,8 +79,27 @@ class MainViewController: UIViewController {
                     }
                 }
                 
+                self.parsePurchases(doc)
                 
             })
+    }
+    
+    func parsePurchases(doc:TFHpple) {
+        let xPath = "/html/body/div[5]/div/div[1]/div[1]/div/div"
+        if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement] {
+            if elements.isEmpty {
+                print("empty")
+            }
+            
+            for element in elements {
+                if let content = element.childrenWithClassName("table_tr") {
+                    print(content)
+                }
+            }
+        }
+        else {
+           print("no elements")
+        }
     }
     
     ///html/body/div[5]/div/div[1]/div[1]/div/div
