@@ -10,12 +10,8 @@ import UIKit
 import Alamofire
 import hpple
 
-
-
 class MainViewController: UIViewController {
 
-    
-    
     @IBOutlet weak var activityViewIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var PasswordTextBox: UITextField!
@@ -42,48 +38,49 @@ class MainViewController: UIViewController {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         activityViewIndicator.startAnimating()
         
-        let URL: NSURL = NSURL(string: "http://obrkarta.ru/auth/")!
-        
-        let request:NSMutableURLRequest = NSMutableURLRequest(URL:URL)
-        
-        request.HTTPMethod = "POST"
-        
-        let bodyData = "login=\(login)&password=\(password)"
-        
-        request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue())
+        Alamofire.request(.POST,
+        "http://obrkarta.ru/auth/",
+        parameters: ["login":"\(login)", "password":"\(password)"],
+        encoding: .URL, headers: nil)
+        .validate()
+            .responseString(encoding: NSUTF8StringEncoding, completionHandler: {(response) -> Void in
+                
+                //for debug
+                //print(NSString(data: response.data!, encoding: NSUTF8StringEncoding))
+                
+                
+                guard response.result.isSuccess else {
+                    print("Не удается соединиться с сервером: \(response.result.error)")
+                    UIHelper.displayAlert("Не удается соединиться с сервером", alertMessage: "Попробуйте повторить запрос через некоторое время", viewController: self)
+                    //completion(nil)
+                    return
+                }
+                
+                UIHelper.stopIgnoringEvents()
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.activityViewIndicator.stopAnimating()
+                
+                let doc = TFHpple(HTMLData: response.data!)
+                let xPath = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
+                if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement]
                 {
-                    (response, data, error) in
+                    if elements.isEmpty {
+                        UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
+                        return
+                    }
                     
-                    //for debug
-                    //print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-                    UIHelper.stopIgnoringEvents()
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    self.activityViewIndicator.stopAnimating()
-                    
-                    let doc = TFHpple(HTMLData: data!)
-                    let xPath = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
-                    if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement]
-                    {
-                        if elements.isEmpty {
-                            UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
-                            return
-                        }
-                        
-                        for element in elements {
-                            if let content = element.text()
-                            {
+                    for element in elements {
+                        if let content = element.text()
+                        {
                             print(content)
-                                self.resultLabel.text = "Баланс: \(content)"
-                            }
+                            self.resultLabel.text = "Баланс: \(content)"
                         }
                     }
-        }
-        
+                }
+                
+                
+            })
     }
-    
-    
     
     ///html/body/div[5]/div/div[1]/div[1]/div/div
     override func viewDidLoad() {
