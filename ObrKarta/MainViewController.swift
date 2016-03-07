@@ -26,6 +26,8 @@ class MainViewController: UIViewController {
     
     @IBAction func checkBalanceButton(sender: UIButton) {
         
+        resultLabel.text = ""
+        
         guard let login = loginTextBox.text where !login.isEmpty else {
             UIHelper.displayAlert("Ошибка входа", alertMessage: "Необходимо ввести логин", viewController: self)
             return
@@ -37,6 +39,7 @@ class MainViewController: UIViewController {
         }
         
         UIHelper.startIgnoringEvents()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         activityViewIndicator.startAnimating()
         
         let URL: NSURL = NSURL(string: "http://obrkarta.ru/auth/")!
@@ -56,8 +59,8 @@ class MainViewController: UIViewController {
                     //for debug
                     //print(NSString(data: data!, encoding: NSUTF8StringEncoding))
                     UIHelper.stopIgnoringEvents()
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     self.activityViewIndicator.stopAnimating()
-                    print(error)
                     
                     let doc = TFHpple(HTMLData: data!)
                     let xPath = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
