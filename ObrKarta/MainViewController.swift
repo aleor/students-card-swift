@@ -85,15 +85,37 @@ class MainViewController: UIViewController {
     }
     
     func parsePurchases(doc:TFHpple) {
-        let xPath = "/html/body/div[5]/div/div[1]/div[1]/div/div"
-        if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement] {
-            if elements.isEmpty {
+        let xPathToTable = "/html/body/div[5]/div/div[1]/div[1]/div/div"
+        if let tableElements = doc.searchWithXPathQuery(xPathToTable) as? [TFHppleElement] {
+            if tableElements.isEmpty {
                 print("empty")
             }
             
-            for element in elements {
-                if let content = element.childrenWithClassName("table_tr") {
-                    print(content)
+            for tableElement in tableElements {
+                if let tableRows = tableElement.childrenWithClassName("table_tr") as? [TFHppleElement]{
+                    for tableRow in tableRows {
+                        if let tableData = tableRow.childrenWithClassName("table_td") as? [TFHppleElement] {
+                            for singleTableData in tableData {
+                                if let list = singleTableData.childrenWithTagName("ul") as? [TFHppleElement] {
+                                    if list.count > 0
+                                    {
+                                    for listItem in list {
+                                        print(listItem.raw)
+                                        print(listItem.text())
+                                        }
+                                    }
+                                    else
+                                    {
+                                        print(singleTableData.text())
+                                        lastPurchaseLabel.text! += " - " + singleTableData.text()
+                                    }
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                    
                 }
             }
         }
