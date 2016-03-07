@@ -14,29 +14,30 @@ import hpple
 
 class MainViewController: UIViewController {
 
+    
+    
+    @IBOutlet weak var activityViewIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var PasswordTextBox: UITextField!
     
     @IBOutlet weak var loginTextBox: UITextField!
     
     @IBOutlet weak var resultLabel: UILabel!
     
-    func showAlert(message: String) {
-        
-    }
-    
     @IBAction func checkBalanceButton(sender: UIButton) {
         
         guard let login = loginTextBox.text where !login.isEmpty else {
-            showAlert("Необходимо ввести логин")
-            print("login!")
+            UIHelper.displayAlert("Ошибка входа", alertMessage: "Необходимо ввести логин", viewController: self)
             return
         }
         
         guard let password = PasswordTextBox.text where !password.isEmpty else {
-            showAlert("Необходимо ввести пароль")
-            print("password!")
+            UIHelper.displayAlert("Ошибка входа", alertMessage: "Необходимо ввести пароль", viewController: self)
             return
         }
+        
+        UIHelper.startIgnoringEvents()
+        activityViewIndicator.startAnimating()
         
         let URL: NSURL = NSURL(string: "http://obrkarta.ru/auth/")!
         
@@ -54,6 +55,8 @@ class MainViewController: UIViewController {
                     
                     //for debug
                     //print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+                    UIHelper.stopIgnoringEvents()
+                    self.activityViewIndicator.stopAnimating()
                     print(error)
                     
                     let doc = TFHpple(HTMLData: data!)
@@ -61,7 +64,7 @@ class MainViewController: UIViewController {
                     if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement]
                     {
                         if elements.isEmpty {
-                            self.resultLabel.text = "Информация о балансе не найдена. Проверьте правильность логина и пароля."
+                            UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
                             return
                         }
                         
@@ -74,6 +77,7 @@ class MainViewController: UIViewController {
                         }
                     }
         }
+        
     }
     
     

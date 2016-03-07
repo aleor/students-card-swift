@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ued-Ti-qUt">
-                                <rect key="frame" x="16" y="220" width="288" height="80"/>
+                                <rect key="frame" x="16" y="235" width="288" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Cu2-PN-KDj"/>
                                 </constraints>
@@ -44,6 +44,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IHz-iA-xfF">
+                                <rect key="frame" x="150" y="208" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -53,7 +56,7 @@
                             <constraint firstAttribute="trailing" secondItem="V1A-Gp-SPS" secondAttribute="trailing" constant="20" id="IfI-LY-PWg"/>
                             <constraint firstItem="V1A-Gp-SPS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="KHe-vp-quv"/>
                             <constraint firstAttribute="trailing" secondItem="gCM-HT-WUx" secondAttribute="trailing" constant="20" id="QCZ-IW-eb8"/>
-                            <constraint firstItem="ued-Ti-qUt" firstAttribute="top" secondItem="dv7-Tt-Y6C" secondAttribute="bottom" constant="20" id="cBw-k9-RQN"/>
+                            <constraint firstItem="ued-Ti-qUt" firstAttribute="top" secondItem="dv7-Tt-Y6C" secondAttribute="bottom" constant="35" id="cBw-k9-RQN"/>
                             <constraint firstAttribute="leadingMargin" secondItem="dv7-Tt-Y6C" secondAttribute="leading" id="hAm-QP-3IL"/>
                             <constraint firstItem="gCM-HT-WUx" firstAttribute="top" secondItem="V1A-Gp-SPS" secondAttribute="bottom" constant="20" id="hF2-AH-VUY"/>
                             <constraint firstItem="V1A-Gp-SPS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="l6b-GD-pJS"/>
@@ -64,6 +67,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="PasswordTextBox" destination="gCM-HT-WUx" id="P0A-ln-SY8"/>
+                        <outlet property="activityViewIndicator" destination="IHz-iA-xfF" id="oBG-B7-m1f"/>
                         <outlet property="loginTextBox" destination="V1A-Gp-SPS" id="e4b-Ns-X3P"/>
                         <outlet property="resultLabel" destination="ued-Ti-qUt" id="OwS-QK-nBy"/>
                     </connections>
