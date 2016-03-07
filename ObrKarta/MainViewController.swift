@@ -116,41 +116,60 @@ class MainViewController: UIViewController {
                     
                     for purchase in firstFivePurchases {
                         
-                        if let tableData = purchase.childrenWithClassName("table_td") as? [TFHppleElement] {
-                            for singleTableData in tableData {
-                                if let unorderedLists = singleTableData.childrenWithTagName("ul") as? [TFHppleElement] {
-                                    if unorderedLists.count > 0
-                                    {
-                                    for unorderedList in unorderedLists {
-                                        print(unorderedList.parent.raw)
-                                        if let listItems = unorderedList.childrenWithTagName("li") as? [TFHppleElement] {
-                                            for listItem in listItems {
-                                                print(listItem.text())
-                                            }
-                                        }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        print(singleTableData.text())
-                                        lastPurchaseLabel.text! += " - " + singleTableData.text()
-                                    }
-                                }
-                                
+                        if let purchaseDataColumns = purchase.childrenWithClassName("table_td") as? [TFHppleElement] {
+                            
+                            if purchaseDataColumns.count != 3 {
+                                lastPurchaseLabel.text = "Неопознанный формат данных о последних покупках"
+                                return
                             }
+                            
+                            let purchaseDateInformation = purchaseDataColumns[0]
+                            let purchasePriceInformation = purchaseDataColumns[1]
+                            let purchaseContentInformation = purchaseDataColumns[2]
+                            
+                            print(purchaseDateInformation.text())
+                            print(purchasePriceInformation.text())
+                            print(purchaseContentInformation.raw)
+                            
+                            lastPurchaseLabel.text! += purchaseDateInformation.text() + ": " + purchasePriceInformation.text()
                         }
-                        
                     }
-                    
                 }
             }
         }
-        else {
-           print("no elements")
-        }
     }
     
-    ///html/body/div[5]/div/div[1]/div[1]/div/div
+//                            for singleTableData in purchaseData {
+//                                if let unorderedLists = singleTableData.childrenWithTagName("ul") as? [TFHppleElement] {
+//                                    if unorderedLists.count > 0
+//                                    {
+//                                    for unorderedList in unorderedLists {
+//                                        print(unorderedList.parent.raw)
+//                                        if let listItems = unorderedList.childrenWithTagName("li") as? [TFHppleElement] {
+//                                            for listItem in listItems {
+//                                                print(listItem.text())
+//                                            }
+//                                        }
+//                                        }
+//                                    }
+//                                    else
+//                                    {
+//                                        print(singleTableData.text())
+//                                        lastPurchaseLabel.text! += " - " + singleTableData.text()
+//                                    }
+//                                }
+                            
+//                            }
+//                        }
+//
+//                    }
+                    
+//                }
+//            }
+//        }
+    
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
