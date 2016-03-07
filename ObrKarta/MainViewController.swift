@@ -85,16 +85,38 @@ class MainViewController: UIViewController {
     }
     
     func parsePurchases(doc:TFHpple) {
+    
+        lastPurchaseLabel.text = ""
         let xPathToTable = "/html/body/div[5]/div/div[1]/div[1]/div/div"
         if let tableElements = doc.searchWithXPathQuery(xPathToTable) as? [TFHppleElement] {
-            if tableElements.isEmpty {
-                print("empty")
-            }
+            
+            if tableElements.count == 0 {
+                lastPurchaseLabel.text = "Информация о последних покупках не найдена"
+                return
+                }
             
             for tableElement in tableElements {
                 if let tableRows = tableElement.childrenWithClassName("table_tr") as? [TFHppleElement]{
-                    for tableRow in tableRows {
-                        if let tableData = tableRow.childrenWithClassName("table_td") as? [TFHppleElement] {
+                    
+                    if tableRows.count == 0 {
+                        lastPurchaseLabel.text = "Информация о последних покупках не найдена"
+                        return
+                    }
+                    
+                    // check how many rows we have and limit up to first 6 rows (including header)
+                    let firstSixRows = tableRows.count > 6 ? 6 : tableRows.count
+                    
+                    // dropping header, so now we have up to 5 latest purchases only
+                    let firstFivePurchases = tableRows.prefix(firstSixRows).dropFirst()
+                    
+                    if (firstFivePurchases.count == 0) {
+                        lastPurchaseLabel.text = "Информация о последних покупках не найдена"
+                        return
+                    }
+                    
+                    for purchase in firstFivePurchases {
+                        
+                        if let tableData = purchase.childrenWithClassName("table_td") as? [TFHppleElement] {
                             for singleTableData in tableData {
                                 if let unorderedLists = singleTableData.childrenWithTagName("ul") as? [TFHppleElement] {
                                     if unorderedLists.count > 0
