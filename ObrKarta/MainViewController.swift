@@ -21,9 +21,12 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     
+    var LastPurchases:[Purchase] = []
+    
     @IBAction func checkBalanceButton(sender: UIButton) {
         
         resultLabel.text = ""
+        lastPurchaseLabel.text = ""
         
         guard let login = loginTextBox.text where !login.isEmpty else {
             UIHelper.displayAlert("Ошибка входа", alertMessage: "Необходимо ввести логин", viewController: self)
@@ -79,12 +82,12 @@ class MainViewController: UIViewController {
                     }
                 }
                 
-                self.parsePurchases(doc)
+                self.getPurchases(doc)
                 
             })
     }
     
-    func parsePurchases(doc:TFHpple) {
+    func getPurchases(doc:TFHpple) {
     
         lastPurchaseLabel.text = ""
         let xPathToTable = "/html/body/div[5]/div/div[1]/div[1]/div/div"
@@ -123,20 +126,42 @@ class MainViewController: UIViewController {
                                 return
                             }
                             
-                            let purchaseDateInformation = purchaseDataColumns[0]
-                            let purchasePriceInformation = purchaseDataColumns[1]
-                            let purchaseContentInformation = purchaseDataColumns[2]
-                            
-                            print(purchaseDateInformation.text())
-                            print(purchasePriceInformation.text())
-                            print(purchaseContentInformation.raw)
-                            
-                            lastPurchaseLabel.text! += purchaseDateInformation.text() + ": " + purchasePriceInformation.text()
+                            parsePurchase(purchaseDataColumns)
                         }
                     }
                 }
             }
         }
+    }
+    
+    func parsePurchase(purchaseDataColumns:[TFHppleElement]) {
+        
+        let thisPurchase = Purchase()
+        
+        let purchaseDateInformation = purchaseDataColumns[0].text()
+        let purchasePriceInformation = purchaseDataColumns[1].text()
+        let purchaseContentInformation = purchaseDataColumns[2]
+        
+        let DateTimeArray = purchaseDateInformation.characters.split(" ").map(String.init)
+        
+        if DateTimeArray.count >= 2 {
+            thisPurchase.Date = DateTimeArray[0]
+            thisPurchase.Time = DateTimeArray[1]
+        }
+        else
+        {
+            thisPurchase.Date = purchaseDateInformation
+        }
+        
+        thisPurchase.Price = purchasePriceInformation
+        
+        LastPurchases.append(thisPurchase)
+        
+        print(purchaseDateInformation)
+        print(purchasePriceInformation)
+        print(purchaseContentInformation.raw)
+        
+        lastPurchaseLabel.text! += purchaseDateInformation + " = " + purchasePriceInformation
     }
     
 //                            for singleTableData in purchaseData {
@@ -152,23 +177,6 @@ class MainViewController: UIViewController {
 //                                        }
 //                                        }
 //                                    }
-//                                    else
-//                                    {
-//                                        print(singleTableData.text())
-//                                        lastPurchaseLabel.text! += " - " + singleTableData.text()
-//                                    }
-//                                }
-                            
-//                            }
-//                        }
-//
-//                    }
-                    
-//                }
-//            }
-//        }
-    
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
