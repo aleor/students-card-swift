@@ -12,6 +12,7 @@ import hpple
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var activityViewIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var lastPurchaseLabel: UILabel!
@@ -27,6 +28,7 @@ class MainViewController: UIViewController {
         
         resultLabel.text = ""
         lastPurchaseLabel.text = ""
+        userNameLabel.text = ""
         
         guard let login = loginTextBox.text where !login.isEmpty else {
             UIHelper.displayAlert("Ошибка входа", alertMessage: "Необходимо ввести логин", viewController: self)
@@ -65,22 +67,8 @@ class MainViewController: UIViewController {
                 self.activityViewIndicator.stopAnimating()
                 
                 let doc = TFHpple(HTMLData: response.data!)
-                let xPath = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
-                if let elements = doc.searchWithXPathQuery(xPath) as? [TFHppleElement]
-                {
-                    if elements.isEmpty {
-                        UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
-                        return
-                    }
-                    
-                    for element in elements {
-                        if let content = element.text()
-                        {
-                            print(content)
-                            self.resultLabel.text = "Баланс: \(content)"
-                        }
-                    }
-                }
+                
+                self.getBalance(doc)
                 
                 self.getPurchases(doc)
                 
@@ -96,6 +84,58 @@ class MainViewController: UIViewController {
                     }
                 }
             })
+    }
+    
+    func getBalance(doc:TFHpple) {
+        
+        var isNameFound:Bool = false
+        
+        let xPathToBalanceInfoDiv = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
+        
+        if let balanceInfoDiv = doc.searchWithXPathQuery(xPathToBalanceInfoDiv) as? [TFHppleElement] {
+            
+            if balanceInfoDiv.count == 0 {
+                resultLabel.text = "Информация о балансе не найдена"
+                UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
+                return
+            }
+            
+            if let balance = balanceInfoDiv[0].text() {
+                resultLabel.text! += balance
+                print(balance)
+            }
+            else {
+                resultLabel.text = "Информация о балансе не найдена"
+            }
+            
+        }
+        
+        let xPathToLoginInfoDiv = "//*[@id='nav']/div[1]/div/div/div[2]/div[2]"
+        
+        if let loginInfoDiv = doc.searchWithXPathQuery(xPathToLoginInfoDiv) as? [TFHppleElement] {
+            
+            if loginInfoDiv.count == 0 {
+                userNameLabel.text = "Не найдено"
+                return
+            }
+            
+            if let loginInfoSpan = loginInfoDiv[0].firstChildWithClassName("sign-in__name") {
+                if let attributes = loginInfoSpan.attributes {
+                    for attribute in attributes {
+                        if attribute.0 == "title" {
+                            userNameLabel.text = attribute.1 as? String
+                            isNameFound = true
+                            print(attribute.1)
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (!isNameFound) {
+            userNameLabel.text = "Не найдено"
+        }
+        
     }
     
     func getPurchases(doc:TFHpple) {
