@@ -84,6 +84,17 @@ class MainViewController: UIViewController {
                 
                 self.getPurchases(doc)
                 
+                for purchase in self.LastPurchases {
+                    print(purchase.Date)
+                    print(purchase.Time)
+                    print(purchase.Price)
+                    if purchase.ContentHeader.characters.count > 0 {
+                        print(purchase.ContentHeader)
+                    }
+                    for contentItem in purchase.Content {
+                        print(contentItem)
+                    }
+                }
             })
     }
     
@@ -142,6 +153,7 @@ class MainViewController: UIViewController {
         let purchasePriceInformation = purchaseDataColumns[1].text()
         let purchaseContentInformation = purchaseDataColumns[2]
         
+        //date and time
         let DateTimeArray = purchaseDateInformation.characters.split(" ").map(String.init)
         
         if DateTimeArray.count >= 2 {
@@ -153,18 +165,14 @@ class MainViewController: UIViewController {
             thisPurchase.Date = purchaseDateInformation
         }
         
+        //price
         thisPurchase.Price = purchasePriceInformation
         
-        LastPurchases.append(thisPurchase)
-        
-        //print(purchaseDateInformation)
-        //print(purchasePriceInformation)
-        //print(purchaseContentInformation.raw)
-        
+        //content
         if let headers = purchaseContentInformation.childrenWithTagName("b") as? [TFHppleElement] {
             if let header = headers.first {
                 thisPurchase.ContentHeader = header.text()
-                print("Header = " + header.text())
+                //print("Header = " + header.text())
             }
         }
         
@@ -173,7 +181,7 @@ class MainViewController: UIViewController {
                 if let menuItems = menuList.childrenWithTagName("li") as? [TFHppleElement] {
                     for menuItem in menuItems {
                         thisPurchase.Content.append(menuItem.text())
-                        print(menuItem.text())
+                        //print(menuItem.text())
                     }
                 }
                 
@@ -187,11 +195,13 @@ class MainViewController: UIViewController {
                     let singlePurchaseItem = singlePurchase.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     if singlePurchaseItem.characters.count > 0 {
                         thisPurchase.Content.append(singlePurchaseItem)
-                        print(singlePurchaseItem)
+                        //print(singlePurchaseItem)
                     }
                 }
             }
         }
+        
+        LastPurchases.append(thisPurchase)
         
         lastPurchaseLabel.text! += purchaseDateInformation + " = " + purchasePriceInformation
     }
