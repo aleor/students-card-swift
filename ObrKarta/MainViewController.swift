@@ -157,26 +157,45 @@ class MainViewController: UIViewController {
         
         LastPurchases.append(thisPurchase)
         
-        print(purchaseDateInformation)
-        print(purchasePriceInformation)
-        print(purchaseContentInformation.raw)
+        //print(purchaseDateInformation)
+        //print(purchasePriceInformation)
+        //print(purchaseContentInformation.raw)
+        
+        if let headers = purchaseContentInformation.childrenWithTagName("b") as? [TFHppleElement] {
+            if let header = headers.first {
+                thisPurchase.ContentHeader = header.text()
+                print("Header = " + header.text())
+            }
+        }
+        
+        if let menuLists = purchaseContentInformation.childrenWithTagName("ul") as? [TFHppleElement] {
+            for menuList in menuLists {
+                if let menuItems = menuList.childrenWithTagName("li") as? [TFHppleElement] {
+                    for menuItem in menuItems {
+                        thisPurchase.Content.append(menuItem.text())
+                        print(menuItem.text())
+                    }
+                }
+                
+            }
+            
+        }
+        
+        if let childs = purchaseContentInformation.children as? [TFHppleElement] {
+            for child in childs {
+                if let singlePurchase = child.content {
+                    let singlePurchaseItem = singlePurchase.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    if singlePurchaseItem.characters.count > 0 {
+                        thisPurchase.Content.append(singlePurchaseItem)
+                        print(singlePurchaseItem)
+                    }
+                }
+            }
+        }
         
         lastPurchaseLabel.text! += purchaseDateInformation + " = " + purchasePriceInformation
     }
     
-//                            for singleTableData in purchaseData {
-//                                if let unorderedLists = singleTableData.childrenWithTagName("ul") as? [TFHppleElement] {
-//                                    if unorderedLists.count > 0
-//                                    {
-//                                    for unorderedList in unorderedLists {
-//                                        print(unorderedList.parent.raw)
-//                                        if let listItems = unorderedList.childrenWithTagName("li") as? [TFHppleElement] {
-//                                            for listItem in listItems {
-//                                                print(listItem.text())
-//                                            }
-//                                        }
-//                                        }
-//                                    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
