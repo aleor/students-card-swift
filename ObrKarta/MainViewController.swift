@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import hpple
 
 class MainViewController: UIViewController {
 
@@ -18,10 +16,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var lastPurchaseLabel: UILabel!
     
     @IBOutlet weak var resultLabel: UILabel!
-    
-    
-    
-        
     
     override func viewDidLoad() {
         super.viewDidLoad()
