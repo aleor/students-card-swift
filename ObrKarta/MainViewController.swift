@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    var data: Info?
+    
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var activityViewIndicator: UIActivityIndicatorView!
     
@@ -19,6 +21,8 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNameLabel.text = data?.Username
+        resultLabel.text = data?.Balance
     }
 
     override func didReceiveMemoryWarning() {

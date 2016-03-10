@@ -12,6 +12,8 @@ import hpple
 
 class LoginViewController: UIViewController {
 
+    var dataModel = Info()
+    
     @IBOutlet weak var loginTextBox: UITextField!
     
     @IBOutlet weak var passwordTextBox: UITextField!
@@ -39,11 +41,21 @@ class LoginViewController: UIViewController {
             UIHelper.stopIgnoringEvents()
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             self.activityViewIndicator.stopAnimating()
+            
+            if let data = infoModel as Info? {
+                self.dataModel = data
+                self.performSegueWithIdentifier("toMainViewController", sender: self)
+            }
         })
-        
-        
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "toMainViewController" {
+        let mainViewController = (segue.destinationViewController as! MainViewController)
+            mainViewController.data = dataModel
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

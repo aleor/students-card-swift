@@ -46,6 +46,7 @@
                         <outlet property="activityViewIndicator" destination="eZz-vV-cWm" id="yZ8-7c-ffN"/>
                         <outlet property="loginTextBox" destination="xBo-a3-unF" id="36g-5v-Qti"/>
                         <outlet property="passwordTextBox" destination="vfe-ds-HhP" id="v3V-Di-wef"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toMainViewController" id="SCT-Nu-n6n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oov-Zy-IKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
