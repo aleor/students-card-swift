@@ -12,7 +12,6 @@ public class Info {
     
     var Username:String = ""
     var Balance:String = ""
-    var ErrorMessage:String = ""
     
     var Purchases:[Purchase] = []
     

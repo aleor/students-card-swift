@@ -30,53 +30,17 @@ class LoginViewController: UIViewController {
             return
         }
         
-        getData(login, password: password)
-    }
-    
-    func getData(login:String, password:String) {
-        
         UIHelper.startIgnoringEvents()
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         activityViewIndicator.startAnimating()
         
+        Services.getDataModel(login, password: password, viewController: self)
         
-        // get data on logon and check if we were actually logged on
-        Network.GetData(login, password: password, viewController: self, completionHandler: {result in
-            
-            UIHelper.stopIgnoringEvents()
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            self.activityViewIndicator.stopAnimating()
-            
-            if let data = result as TFHpple? {
-                
-                // balance value means here that we were successfully logged on
-                if let balance = HtmlParser.getBalance(data, viewController: self)  {
-                    print(balance)
-                    
-                    if let username = HtmlParser.getUserName(data) {
-                        print(username)
-                    }
-                    else {
-                        print("Username not found")
-                    }
-                    
-                    if let lastPurchases = HtmlParser.getPurchases(data) {
-                        for purchase in lastPurchases {
-                            print(purchase.Date + " " + purchase.Time + " " + purchase.Price)
-                        }
-                    }
-                    
-                }
-                else {
-                    // if not found - it means (most probably) that we were not logged on successfully
-                    return
-                }
-            }
-            else {
-                UIHelper.displayAlert("Ошибка", alertMessage: "Ошибка при получении данных", viewController: self)
-            }
-        })
+        UIHelper.stopIgnoringEvents()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        self.activityViewIndicator.stopAnimating()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
