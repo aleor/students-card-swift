@@ -49,13 +49,16 @@ class LoginViewController: UIViewController {
             
             if let data = result as TFHpple? {
                 
-                HtmlParser.ParseResponse(data)
+                if let balance = HtmlParser.getBalance(data, viewController: self)  {
+                    print(balance)
+                }
+                else {
+                    return
+                }
             }
             else {
                 UIHelper.displayAlert("Ошибка", alertMessage: "Ошибка при получении данных", viewController: self)
-                print("no data")
             }
-            
         })
     }
     

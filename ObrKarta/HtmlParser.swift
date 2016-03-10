@@ -6,76 +6,57 @@
 //  Copyright © 2016 arvalea.com. All rights reserved.
 //
 
-import Foundation
 import hpple
 
 public class HtmlParser {
     
-    class func ParseResponse(data:TFHpple) -> Info {
-        
-        let InfoModel = Info()
-        
-        getBalance(data)
-        
-        print(data)
-        
-        
-        return InfoModel
-    }
-    
-    private class func getBalance(doc:TFHpple) {
-        
-        var isNameFound:Bool = false
+    // due to site specific, this method is also used to determine if login attempt was successfull
+    public class func getBalance(data:TFHpple, viewController:UIViewController) -> String? {
         
         let xPathToBalanceInfoDiv = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
         
-        if let balanceInfoDiv = doc.searchWithXPathQuery(xPathToBalanceInfoDiv) as? [TFHppleElement] {
+        if let balanceInfoDiv = data.searchWithXPathQuery(xPathToBalanceInfoDiv) as? [TFHppleElement] {
             
             if balanceInfoDiv.count == 0 {
-                //resultLabel.text = "Информация о балансе не найдена"
-                //UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
-                return
+                
+                UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: viewController)
+                return nil
             }
             
             if let balance = balanceInfoDiv[0].text() {
-                //resultLabel.text! += balance
-                print(balance)
+                return balance
             }
-            else {
-                //resultLabel.text = "Информация о балансе не найдена"
-            }
-            
         }
         
+        return nil
+    }
+
+
+    public class func getUserName(data:TFHpple) -> String? {
+    
         let xPathToLoginInfoDiv = "//*[@id='nav']/div[1]/div/div/div[2]/div[2]"
         
-        if let loginInfoDiv = doc.searchWithXPathQuery(xPathToLoginInfoDiv) as? [TFHppleElement] {
+        if let loginInfoDiv = data.searchWithXPathQuery(xPathToLoginInfoDiv) as? [TFHppleElement] {
             
             if loginInfoDiv.count == 0 {
-                //userNameLabel.text = "Не найдено"
-                return
+                return nil
             }
             
             if let loginInfoSpan = loginInfoDiv[0].firstChildWithClassName("sign-in__name") {
                 if let attributes = loginInfoSpan.attributes {
                     for attribute in attributes {
                         if attribute.0 == "title" {
-                            //userNameLabel.text = attribute.1 as? String
-                            isNameFound = true
-                            print(attribute.1)
+                            return (attribute.1 as? String)
                         }
                     }
                 }
             }
         }
         
-        if (!isNameFound) {
-            //userNameLabel.text = "Не найдено"
-        }
-        
+        return nil
     }
     
-    private class func getPurchases(doc:TFHpple) {
+    public class func getPurchases(doc:TFHpple) {
         
         //lastPurchaseLabel.text = ""
         let xPathToTable = "/html/body/div[5]/div/div[1]/div[1]/div/div"

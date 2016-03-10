@@ -6,13 +6,10 @@
 //  Copyright © 2016 arvalea.com. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import hpple
 
 public class Network {
-    
-    
     
     class func GetData(login:String, password:String, viewController: UIViewController, completionHandler: (TFHpple?)->Void) {
         
