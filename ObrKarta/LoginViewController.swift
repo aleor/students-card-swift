@@ -34,11 +34,14 @@ class LoginViewController: UIViewController {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         activityViewIndicator.startAnimating()
         
-        Services.getDataModel(login, password: password, viewController: self)
+        Services.getDataModel(login, password: password, viewController: self, completionHandler: {infoModel in
+            
+            UIHelper.stopIgnoringEvents()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            self.activityViewIndicator.stopAnimating()
+        })
         
-        UIHelper.stopIgnoringEvents()
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        self.activityViewIndicator.stopAnimating()
+        
     }
     
     

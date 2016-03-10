@@ -11,7 +11,7 @@ import hpple
 
 public class Services {
     
-    class func getDataModel(login: String, password: String, viewController:UIViewController) -> Info? {
+    class func getDataModel(login: String, password: String, viewController:UIViewController, completionHandler:(Info?) -> Void) {
         
         let info = Info()
         
@@ -49,7 +49,9 @@ public class Services {
             else {
                 UIHelper.displayAlert("Ошибка", alertMessage: "Ошибка при получении данных", viewController: viewController)
             }
+            completionHandler(info)
         })
-        return info
+        
+        
     }
 }
