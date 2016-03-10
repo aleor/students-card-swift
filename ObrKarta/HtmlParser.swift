@@ -56,34 +56,32 @@ public class HtmlParser {
         return nil
     }
     
-    public class func getPurchases(doc:TFHpple) {
+    public class func getPurchases(doc:TFHpple) -> [Purchase]? {
         
-        //lastPurchaseLabel.text = ""
+        var LastPurchases:[Purchase] = []
+        
         let xPathToTable = "/html/body/div[5]/div/div[1]/div[1]/div/div"
         if let tableElements = doc.searchWithXPathQuery(xPathToTable) as? [TFHppleElement] {
             
             if tableElements.count == 0 {
-                //lastPurchaseLabel.text = "Информация о последних покупках не найдена"
-                return
+                return nil
             }
             
             for tableElement in tableElements {
                 if let tableRows = tableElement.childrenWithClassName("table_tr") as? [TFHppleElement]{
                     
                     if tableRows.count == 0 {
-                        //lastPurchaseLabel.text = "Информация о последних покупках не найдена"
-                        return
+                        return nil
                     }
                     
                     // check how many rows we have and limit up to first 6 rows (including header)
                     let firstSixRows = tableRows.count > 6 ? 6 : tableRows.count
                     
-                    // dropping header, so now we have up to 5 latest purchases only
+                    // drop header, so now we have up to 5 latest purchases only
                     let firstFivePurchases = tableRows.prefix(firstSixRows).dropFirst()
                     
                     if (firstFivePurchases.count == 0) {
-                        //lastPurchaseLabel.text = "Информация о последних покупках не найдена"
-                        return
+                        return nil
                     }
                     
                     for purchase in firstFivePurchases {
@@ -91,19 +89,20 @@ public class HtmlParser {
                         if let purchaseDataColumns = purchase.childrenWithClassName("table_td") as? [TFHppleElement] {
                             
                             if purchaseDataColumns.count != 3 {
-                                //lastPurchaseLabel.text = "Неопознанный формат данных о последних покупках"
-                                return
+                                continue
                             }
                             
-                            parsePurchase(purchaseDataColumns)
+                            LastPurchases.append(parsePurchase(purchaseDataColumns))
                         }
                     }
                 }
             }
         }
+        
+        return LastPurchases
     }
     
-    private class func parsePurchase(purchaseDataColumns:[TFHppleElement]) {
+    private class func parsePurchase(purchaseDataColumns:[TFHppleElement]) -> Purchase {
         
         let thisPurchase = Purchase()
         
@@ -159,8 +158,8 @@ public class HtmlParser {
             }
         }
         
-        //LastPurchases.append(thisPurchase)
-        
-        //lastPurchaseLabel.text! += purchaseDateInformation + " = " + purchasePriceInformation
+        return thisPurchase
     }
+    
+    
 }
