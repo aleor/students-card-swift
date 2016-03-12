@@ -21,7 +21,7 @@ public class Services {
             if let data = result as TFHpple? {
                 
                 // balance value means here that we were successfully logged on
-                if let balance = HtmlParser.getBalance(data, viewController: viewController)  {
+                if let balance = HtmlParser.getBalance(data)  {
                     info.Balance = balance
                     print(balance)
                     
@@ -30,7 +30,7 @@ public class Services {
                         print(username)
                     }
                     else {
-                        print("Username not found")
+                        info.Username = "Не найдено"
                     }
                     
                     if let lastPurchases = HtmlParser.getPurchases(data) {

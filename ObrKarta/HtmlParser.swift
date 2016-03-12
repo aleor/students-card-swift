@@ -11,15 +11,13 @@ import hpple
 public class HtmlParser {
     
     // due to site specific, this method is also used to determine if login attempt was successfull
-    public class func getBalance(data:TFHpple, viewController:UIViewController) -> String? {
+    public class func getBalance(data:TFHpple) -> String? {
         
         let xPathToBalanceInfoDiv = "//*[@id='nav']/div[1]/div/div/div[2]/div[1]/span[2]"
         
         if let balanceInfoDiv = data.searchWithXPathQuery(xPathToBalanceInfoDiv) as? [TFHppleElement] {
             
             if balanceInfoDiv.count == 0 {
-                
-                UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: viewController)
                 return nil
             }
             

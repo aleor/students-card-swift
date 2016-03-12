@@ -46,6 +46,11 @@ class LoginViewController: UIViewController {
                 self.dataModel = data
                 self.performSegueWithIdentifier("showInfoViewController", sender: self)
             }
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
+                })
+            }
             print("here")
         })
     }
