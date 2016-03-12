@@ -43,12 +43,16 @@ public class Services {
                 }
                 else {
                     // if not found - it means (most probably) that we were not logged on successfully
+                    completionHandler(nil)
                     return
                 }
             }
             else {
                 UIHelper.displayAlert("Ошибка", alertMessage: "Ошибка при получении данных", viewController: viewController)
+                completionHandler(nil)
+                return
             }
+            
             completionHandler(info)
         })
         

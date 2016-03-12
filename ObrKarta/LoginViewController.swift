@@ -44,16 +44,17 @@ class LoginViewController: UIViewController {
             
             if let data = infoModel as Info? {
                 self.dataModel = data
-                self.performSegueWithIdentifier("toMainViewController", sender: self)
+                self.performSegueWithIdentifier("showInfoViewController", sender: self)
             }
+            print("here")
         })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "toMainViewController" {
-        let mainViewController = (segue.destinationViewController as! MainViewController)
-            mainViewController.data = dataModel
+        if segue.identifier == "showInfoViewController" {
+        let infoViewController = (segue.destinationViewController as! InfoViewController)
+            infoViewController.data = dataModel
         }
     }
     

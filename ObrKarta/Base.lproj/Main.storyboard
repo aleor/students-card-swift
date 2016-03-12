@@ -47,6 +47,7 @@
                         <outlet property="loginTextBox" destination="xBo-a3-unF" id="36g-5v-Qti"/>
                         <outlet property="passwordTextBox" destination="vfe-ds-HhP" id="v3V-Di-wef"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toMainViewController" id="SCT-Nu-n6n"/>
+                        <segue destination="xQg-Ba-DtC" kind="show" identifier="showInfoViewController" id="QcB-6E-8hK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oov-Zy-IKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -107,7 +108,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="257"/>
+            <point key="canvasLocation" x="453" y="22"/>
+        </scene>
+        <!--InfoViewController-->
+        <scene sceneID="Yfg-kN-QxQ">
+            <objects>
+                <tableViewController title="InfoViewController" id="xQg-Ba-DtC" customClass="InfoViewController" customModule="ObrKarta" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="agK-6D-UNv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" id="rvq-ze-OFE">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rvq-ze-OFE" id="tpg-eb-bL9">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xQg-Ba-DtC" id="8M6-KF-IHz"/>
+                            <outlet property="delegate" destination="xQg-Ba-DtC" id="hhx-pG-wU9"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cK8-8T-Eow" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="453" y="650"/>
         </scene>
     </scenes>
 </document>
