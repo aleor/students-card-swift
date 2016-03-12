@@ -12,7 +12,9 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
 
     var data: Info?
     
+    @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var lblBalanceInfo: UILabel!
     
     let cells = InfoCells()
     
@@ -38,7 +40,15 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
     }
 
     func setup() {
-        self.cells.append(InfoCells.Item(value:"123"))
+        lblUserName.text = data?.Username
+        lblBalanceInfo.text = data?.Balance
+        for purchase in (data?.Purchases)! {
+            cells.append(InfoCells.HeaderItem(value:purchase.ContentHeader))
+            for item in purchase.Content {
+                cells.append(InfoCells.Item(value:item))
+            }
+        }
+        
     }
     
     
