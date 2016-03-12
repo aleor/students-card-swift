@@ -45,44 +45,50 @@
                         <outlet property="activityViewIndicator" destination="eZz-vV-cWm" id="yZ8-7c-ffN"/>
                         <outlet property="loginTextBox" destination="xBo-a3-unF" id="36g-5v-Qti"/>
                         <outlet property="passwordTextBox" destination="vfe-ds-HhP" id="v3V-Di-wef"/>
-                        <segue destination="xQg-Ba-DtC" kind="show" identifier="showInfoViewController" id="0qs-pa-cGB"/>
+                        <segue destination="KUb-Fk-53B" kind="show" identifier="showInfoViewController" id="8vA-km-y5P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oov-Zy-IKk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="49" y="257"/>
         </scene>
-        <!--InfoViewController-->
-        <scene sceneID="Yfg-kN-QxQ">
+        <!--Info View Controller-->
+        <scene sceneID="iI5-4x-oOT">
             <objects>
-                <tableViewController title="InfoViewController" id="xQg-Ba-DtC" customClass="InfoViewController" customModule="ObrKarta" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="28" sectionFooterHeight="28" id="agK-6D-UNv">
+                <viewController id="KUb-Fk-53B" customClass="InfoViewController" customModule="ObrKarta" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bBo-Yn-Twd"/>
+                        <viewControllerLayoutGuide type="bottom" id="pvM-75-5Vq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eHQ-Zq-KIa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hXG-n4-W2L">
+                                <rect key="frame" x="0.0" y="170" width="320" height="398"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" id="XLG-b5-VlZ">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XLG-b5-VlZ" id="9hD-p9-NvT">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" rowHeight="43" id="rvq-ze-OFE">
-                                <rect key="frame" x="0.0" y="28" width="320" height="43"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rvq-ze-OFE" id="tpg-eb-bL9">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="xQg-Ba-DtC" id="8M6-KF-IHz"/>
-                            <outlet property="delegate" destination="xQg-Ba-DtC" id="hhx-pG-wU9"/>
-                        </connections>
-                    </tableView>
+                    </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="table" destination="agK-6D-UNv" id="PS6-Ax-I3v"/>
+                        <outlet property="table" destination="hXG-n4-W2L" id="BeX-Xd-CtJ"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cK8-8T-Eow" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdZ-rF-BoC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="555" y="257"/>
+            <point key="canvasLocation" x="490" y="257"/>
         </scene>
     </scenes>
 </document>

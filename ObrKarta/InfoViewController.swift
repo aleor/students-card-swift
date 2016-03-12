@@ -8,9 +8,11 @@
 
 import UIKit
 
-class InfoViewController: UITableViewController {
+class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
 
     var data: Info?
+    
+    @IBOutlet weak var table: UITableView!
     
     let cells = InfoCells()
     
@@ -18,39 +20,40 @@ class InfoViewController: UITableViewController {
     var selectedHeaderIndex: Int?
     var selectedItemIndex: Int?
     
-    @IBOutlet var table: UITableView!
+    // MARK: - Table view data source
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        table.delegate = self
+        table.dataSource = self
         self.setup()
         }
 
-    func setup() {
-        self.cells.append(InfoCells.HeaderItem(value: (data?.Username)!))
-        self.cells.append(InfoCells.HeaderItem(value: (data?.Balance)!))
-        self.cells.append(InfoCells.HeaderItem(value: "Last purchases"))
-        self.cells.append(InfoCells.Item(value:"123"))
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func setup() {
+        self.cells.append(InfoCells.Item(value:"123"))
+    }
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return cells.items.count
     }
-
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let item = self.cells.items[indexPath.row]
         let value = item.value as? String
         
@@ -67,7 +70,7 @@ class InfoViewController: UITableViewController {
         return UITableViewCell()
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let item = self.cells.items[indexPath.row]
         
         if item is InfoCells.HeaderItem {
@@ -79,7 +82,7 @@ class InfoViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.cells.items[indexPath.row]
         
         if item is InfoCells.HeaderItem {
@@ -119,4 +122,6 @@ class InfoViewController: UITableViewController {
         }
     }
 
+    
+    
 }
