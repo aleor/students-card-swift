@@ -14,7 +14,7 @@ class InfoViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+            
         }
 
     override func didReceiveMemoryWarning() {

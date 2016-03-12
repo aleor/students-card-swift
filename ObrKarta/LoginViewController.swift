@@ -51,7 +51,6 @@ class LoginViewController: UIViewController {
                 UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
                 })
             }
-            print("here")
         })
     }
     

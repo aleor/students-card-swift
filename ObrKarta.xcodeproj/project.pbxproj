@@ -19,7 +19,6 @@
 		11E207791C7A51240012180C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11E207771C7A51240012180C /* Main.storyboard */; };
 		11E2077B1C7A51240012180C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11E2077A1C7A51240012180C /* Assets.xcassets */; };
 		11E2077E1C7A51240012180C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11E2077C1C7A51240012180C /* LaunchScreen.storyboard */; };
-		11E207861C7A52420012180C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E207851C7A52420012180C /* MainViewController.swift */; };
 		143CFDC80E5798C888AC4C2B /* Pods_ObrKarta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F192DAD273D9B3501F4B6A96 /* Pods_ObrKarta.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +38,6 @@
 		11E2077A1C7A51240012180C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11E2077D1C7A51240012180C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11E2077F1C7A51240012180C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11E207851C7A52420012180C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BAFEF21738FFC5B8E0C814F3 /* Pods-ObrKarta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObrKarta.release.xcconfig"; path = "Pods/Target Support Files/Pods-ObrKarta/Pods-ObrKarta.release.xcconfig"; sourceTree = "<group>"; };
 		D3775E9B2C7A09791007832A /* Pods-ObrKarta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObrKarta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ObrKarta/Pods-ObrKarta.debug.xcconfig"; sourceTree = "<group>"; };
 		F192DAD273D9B3501F4B6A96 /* Pods_ObrKarta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObrKarta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +81,6 @@
 				11E2077A1C7A51240012180C /* Assets.xcassets */,
 				11E2077C1C7A51240012180C /* LaunchScreen.storyboard */,
 				11E2077F1C7A51240012180C /* Info.plist */,
-				11E207851C7A52420012180C /* MainViewController.swift */,
 				11BA9F391C83949700E36155 /* Obrkarta-Bridging-Header.h */,
 				111EFD6F1C8DB52D00094F1E /* UIHelper.swift */,
 				111EFD711C8E1CB200094F1E /* Purchase.swift */,
@@ -240,7 +237,6 @@
 				111EFD721C8E1CB300094F1E /* Purchase.swift in Sources */,
 				11E207741C7A51240012180C /* AppDelegate.swift in Sources */,
 				111EFD7A1C90A69500094F1E /* Network.swift in Sources */,
-				11E207861C7A52420012180C /* MainViewController.swift in Sources */,
 				111EFD7E1C94305E00094F1E /* InfoViewController.swift in Sources */,
 				111EFD761C90A4C000094F1E /* Info.swift in Sources */,
 				111EFD741C909DB300094F1E /* LoginViewController.swift in Sources */,
