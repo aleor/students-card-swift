@@ -44,27 +44,44 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 4
+        
+        if let numberOfPurchases = data?.Purchases.count {
+            return numberOfPurchases
+        }
+        else {
+            return 0
+        }
     }
     
     
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
      
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as! InfoCells
+        
+        if let purchase = data?.Purchases[indexPath.row] {
+            cell.lblDate.text = purchase.Date
+            cell.lblTime.text = purchase.Time
+            cell.lblPrice.text = purchase.Price
+            if !purchase.ContentHeader.isEmpty {
+            cell.lblTitle.text = purchase.ContentHeader
+            }
+            else {
+                cell.lblTitle.text = purchase.Content[0]
+            }
+         }
+        
+        return cell
     }
     
      func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
             }
     
-     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            }
+    
 
     
     
