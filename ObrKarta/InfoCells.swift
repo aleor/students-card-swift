@@ -6,50 +6,16 @@
 //  Copyright © 2016 arvalea.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class InfoCells {
-    private (set) var items = [Item]()
+class InfoCells : UITableViewCell, UITextFieldDelegate
+{
     
-    class Item {
-        var isHidden: Bool
-        var value: AnyObject
-        
-        init(_ hidden: Bool = true, value: AnyObject) {
-            self.isHidden = hidden
-            self.value = value
-        }
-    }
+    @IBOutlet weak var lblDate: UILabel!
     
-    class HeaderItem: Item {
-        init (value: AnyObject) {
-            super.init(false, value: value)
-        }
-    }
+    @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var lblPrice: UILabel!
     
-    func append(item: Item) {
-        self.items.append(item)
-    }
+    @IBOutlet weak var lblTitle: UILabel!
     
-    func removeAll() {
-        self.items.removeAll()
     }
-    
-    func expand(headerIndex: Int) {
-        self.toogleVisible(headerIndex, isHidden: false)
-    }
-    
-    func collapse(headerIndex: Int) {
-        self.toogleVisible(headerIndex, isHidden: true)
-    }
-    
-    private func toogleVisible(var headerIndex: Int, isHidden: Bool) {
-        headerIndex++
-        
-        while headerIndex < self.items.count && !(self.items[headerIndex] is HeaderItem) {
-            self.items[headerIndex].isHidden = isHidden
-            
-            headerIndex++
-        }
-    }
-}
