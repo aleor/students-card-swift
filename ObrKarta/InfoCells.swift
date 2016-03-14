@@ -18,4 +18,5 @@ class InfoCells : UITableViewCell, UITextFieldDelegate
     
     @IBOutlet weak var lblTitle: UILabel!
     
+    @IBOutlet weak var lblArrow: UILabel!
     }

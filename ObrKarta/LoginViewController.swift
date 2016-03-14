@@ -57,7 +57,10 @@ class LoginViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showInfoViewController" {
-        let infoViewController = (segue.destinationViewController as! InfoViewController)
+            
+            let tabBarController = segue.destinationViewController as! UITabBarController
+            let navController = tabBarController.viewControllers![0] as! UINavigationController
+            let infoViewController = navController.topViewController as! InfoViewController
             infoViewController.data = dataModel
         }
     }
@@ -70,7 +73,10 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
 
 }

@@ -12,9 +12,10 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
 
     var data: Info?
     
-    @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var lblBalanceInfo: UILabel!
+    
+
     
     let cells = InfoCells()
     
@@ -37,7 +38,7 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
     }
 
     func setup() {
-        lblUserName.text = data?.Username
+        //navigationController!.title = data?.Username
         lblBalanceInfo.text = data?.Balance
         
     }
@@ -71,6 +72,10 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
             }
             else {
                 cell.lblTitle.text = purchase.Content[0]
+            }
+            
+            if purchase.Content.count > 1 {
+                cell.lblArrow.hidden = false
             }
          }
         
