@@ -11,9 +11,11 @@ import UIKit
 class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
 
     var data: Info?
+    var selectedRow: Int?
     
-    @IBOutlet weak var table: UITableView!
     @IBOutlet weak var lblBalanceInfo: UILabel!
+    @IBOutlet weak var table: UITableView!
+    //@IBOutlet weak var lblBalanceInfo: UILabel!
     
 
     
@@ -28,6 +30,7 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
+        table.registerNib(UINib(nibName: "InfoCell", bundle: nil), forCellReuseIdentifier: "infoCell")
         self.setup()
         }
 
@@ -38,7 +41,7 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
     }
 
     func setup() {
-        //navigationController!.title = data?.Username
+        self.title = data?.Username
         lblBalanceInfo.text = data?.Balance
         
     }
@@ -57,6 +60,18 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
             return 0
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        selectedRow = indexPath.row
+        print("Row: \(selectedRow)")
+        
+        
+        
+    }
+    
     
     
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

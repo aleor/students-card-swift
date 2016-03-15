@@ -35,9 +35,9 @@ public class Services {
                     
                     if let lastPurchases = HtmlParser.getPurchases(data) {
                         info.Purchases = lastPurchases
-                        for purchase in lastPurchases {
-                            print(purchase.Date + " " + purchase.Time + " " + purchase.Price)
-                        }
+                        //for purchase in lastPurchases {
+                        //    print(purchase.Date + " " + purchase.Time + " " + purchase.Price)
+                        //}
                     }
                     
                 }

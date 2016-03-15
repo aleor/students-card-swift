@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InfoCells : UITableViewCell, UITextFieldDelegate
+class InfoCells : UITableViewCell
 {
     
     @IBOutlet weak var lblDate: UILabel!

@@ -58,8 +58,7 @@ class LoginViewController: UIViewController {
         
         if segue.identifier == "showInfoViewController" {
             
-            let tabBarController = segue.destinationViewController as! UITabBarController
-            let navController = tabBarController.viewControllers![0] as! UINavigationController
+            let navController = segue.destinationViewController as! UINavigationController
             let infoViewController = navController.topViewController as! InfoViewController
             infoViewController.data = dataModel
         }
