@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import hpple
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     var dataModel = Info()
     
@@ -66,6 +66,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loginTextBox.delegate = self
+        self.passwordTextBox.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,8 +75,13 @@ class LoginViewController: UIViewController {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        self.view.endEditing(true)
+        return false
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        self.view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
     }
     
 
