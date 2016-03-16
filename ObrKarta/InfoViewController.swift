@@ -16,8 +16,7 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
     
     @IBOutlet weak var lblBalanceInfo: UILabel!
     @IBOutlet weak var table: UITableView!
-    //@IBOutlet weak var lblBalanceInfo: UILabel!
-    
+    @IBOutlet weak var balanceActivityIndicator: UIActivityIndicatorView!
 
     
     let cells = InfoCells()
@@ -43,24 +42,47 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
 
     
     func refresh(sender:AnyObject) {
+        
+        lblBalanceInfo.text = ""
+        
+        balanceActivityIndicator.startAnimating()
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
         Services.getDataModel("10409969", password: "Evelina2005", viewController: self, completionHandler: {
         result in
             if (result != nil) {
             self.data = result
+            self.balanceActivityIndicator.stopAnimating()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             
             self.setup()
-            
-            self.table.reloadData()
-            
+                
             if self.refreshControl.refreshing
             {
                 self.refreshControl.endRefreshing()
             }
+            
+            self.table.reloadData()
+            
             }
             else {
-                UIHelper.displayAlert("Не удалось обновить данные", alertMessage: "Попробуйте повторить попытку позднее.", viewController: self)
+                UIHelper.displayAlert("Не удалось обновить данные", alertMessage: "Попробуйте повторить попытку позднее", viewController: self)
+            }
+            
+            if self.balanceActivityIndicator.isAnimating() {
+                self.balanceActivityIndicator.stopAnimating()
+            }
+            
+            if (UIApplication.sharedApplication().networkActivityIndicatorVisible) {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            }
+            
+            if self.refreshControl.refreshing {
+                self.refreshControl.endRefreshing()
             }
         })
+        
     }
     
     override func didReceiveMemoryWarning() {
