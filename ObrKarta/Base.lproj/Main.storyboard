@@ -51,8 +51,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Для первого входа используйте логин и пароль с obrkarta.ru" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxZ-tX-Rjv">
-                                <rect key="frame" x="20" y="259" width="280" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Для входа используется логин и пароль с веб-сайта obrkarta.ru. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxZ-tX-Rjv">
+                                <rect key="frame" x="20" y="259" width="280" height="49"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -126,9 +126,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fjE-wT-aTR">
-                        <barButtonItem key="rightBarButtonItem" image="profile" style="done" id="mEr-FL-dHO">
-                            <inset key="imageInsets" minX="3" minY="-3" maxX="3" maxY="-3"/>
-                            <color key="tintColor" red="0.58226768160443565" green="0.73287295722083701" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" image="ContactsIcon" style="done" id="mEr-FL-dHO">
+                            <color key="tintColor" red="0.039215686270000001" green="0.26274509800000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="d78-kH-dLv" kind="show" id="HVb-MY-PUQ"/>
                             </connections>
@@ -191,7 +190,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ContactsIcon" width="32" height="32"/>
         <image name="line" width="254" height="1"/>
-        <image name="profile" width="29" height="25"/>
     </resources>
 </document>
