@@ -12,6 +12,7 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
 
     var data: Info?
     var selectedRow: Int?
+    var refreshControl = UIRefreshControl()
     
     @IBOutlet weak var lblBalanceInfo: UILabel!
     @IBOutlet weak var table: UITableView!
@@ -31,9 +32,36 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
         table.delegate = self
         table.dataSource = self
         table.registerNib(UINib(nibName: "InfoCell", bundle: nil), forCellReuseIdentifier: "infoCell")
+        
+        // set up the refresh control
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Обновление данных...")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.table.addSubview(refreshControl)
+        
         self.setup()
         }
 
+    
+    func refresh(sender:AnyObject) {
+        Services.getDataModel("10409969", password: "Evelina2005", viewController: self, completionHandler: {
+        result in
+            if (result != nil) {
+            self.data = result
+            
+            self.setup()
+            
+            self.table.reloadData()
+            
+            if self.refreshControl.refreshing
+            {
+                self.refreshControl.endRefreshing()
+            }
+            }
+            else {
+                UIHelper.displayAlert("Не удалось обновить данные", alertMessage: "Попробуйте повторить попытку позднее.", viewController: self)
+            }
+        })
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -56,7 +56,7 @@
         <!--Info View Controller-->
         <scene sceneID="iI5-4x-oOT">
             <objects>
-                <viewController id="KUb-Fk-53B" customClass="InfoViewController" customModule="ObrKarta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="KUb-Fk-53B" customClass="InfoViewController" customModule="ObrKarta" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bBo-Yn-Twd"/>
                         <viewControllerLayoutGuide type="bottom" id="pvM-75-5Vq"/>
@@ -72,25 +72,25 @@
                                     <constraint firstAttribute="height" constant="360" id="c9g-DE-SP1"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="0.0" id="rtn-0q-qWI">
-                                        <rect key="frame" x="0.0" y="74" width="328" height="0.0"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="rtn-0q-qWI">
+                                        <rect key="frame" x="0.0" y="10" width="328" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rtn-0q-qWI" id="DRR-NQ-i1p">
-                                            <rect key="frame" x="0.0" y="-1" width="328" height="1"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Последние покупки" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGb-oH-tNU">
-                                <rect key="frame" x="20" y="179" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.035294117649999998" green="0.26274509800000001" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ys-ea-7Qw">
                                 <rect key="frame" x="20" y="85" width="280" height="55"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="27"/>
+                                <color key="textColor" red="0.035294117649999998" green="0.26274509800000001" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Последние покупки" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGb-oH-tNU">
+                                <rect key="frame" x="20" y="169" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.035294117649999998" green="0.26274509800000001" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -103,7 +103,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fjE-wT-aTR">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="mEr-FL-dHO"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="mEr-FL-dHO">
+                            <connections>
+                                <segue destination="d78-kH-dLv" kind="show" id="HVb-MY-PUQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -157,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jX-xZ-HBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2040" y="961"/>
+            <point key="canvasLocation" x="2429" y="225"/>
         </scene>
     </scenes>
 </document>
