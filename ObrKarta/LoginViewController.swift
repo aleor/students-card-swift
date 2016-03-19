@@ -14,11 +14,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     var dataModel = Info()
     
+    var isRememberMe = false
+    
     @IBOutlet weak var loginTextBox: UITextField!
     
     @IBOutlet weak var passwordTextBox: UITextField!
     
     @IBOutlet weak var activityViewIndicator: UIActivityIndicatorView!
+    
+
+    @IBAction func rememberMeAction(sender: UISwitch) {
+        isRememberMe = sender.on
+        print("switch status is: \(sender.on)")
+    }
     
     @IBAction func loginClicked(sender: UIButton) {
         
@@ -47,9 +55,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegueWithIdentifier("showInfoViewController", sender: self)
             }
             else {
-                dispatch_async(dispatch_get_main_queue(), {
-                UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
-                })
+                if self.presentedViewController == nil
+                {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        UIHelper.displayAlert("Информация не найдена", alertMessage: "Проверьте правильность логина и пароля", viewController: self)
+                    })
+                }
             }
         })
     }

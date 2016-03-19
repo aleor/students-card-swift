@@ -17,6 +17,7 @@
 		111EFD7E1C94305E00094F1E /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111EFD7D1C94305E00094F1E /* InfoViewController.swift */; };
 		111EFD801C94A0F800094F1E /* InfoCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111EFD7F1C94A0F800094F1E /* InfoCells.swift */; };
 		113B40A81C98A52100E0E7DF /* InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 113B40A71C98A52100E0E7DF /* InfoCell.xib */; };
+		113B40AA1C9D588800E0E7DF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B40A91C9D588800E0E7DF /* ProfileViewController.swift */; };
 		11E207741C7A51240012180C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E207731C7A51240012180C /* AppDelegate.swift */; };
 		11E207791C7A51240012180C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11E207771C7A51240012180C /* Main.storyboard */; };
 		11E2077B1C7A51240012180C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11E2077A1C7A51240012180C /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		111EFD7D1C94305E00094F1E /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		111EFD7F1C94A0F800094F1E /* InfoCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCells.swift; sourceTree = "<group>"; };
 		113B40A71C98A52100E0E7DF /* InfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoCell.xib; sourceTree = "<group>"; };
+		113B40A91C9D588800E0E7DF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11BA9F391C83949700E36155 /* Obrkarta-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Obrkarta-Bridging-Header.h"; sourceTree = "<group>"; };
 		11E207701C7A51240012180C /* ObrKarta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObrKarta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11E207731C7A51240012180C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				111EFD7D1C94305E00094F1E /* InfoViewController.swift */,
 				111EFD7F1C94A0F800094F1E /* InfoCells.swift */,
 				113B40A71C98A52100E0E7DF /* InfoCell.xib */,
+				113B40A91C9D588800E0E7DF /* ProfileViewController.swift */,
 			);
 			path = ObrKarta;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				111EFD7E1C94305E00094F1E /* InfoViewController.swift in Sources */,
 				111EFD761C90A4C000094F1E /* Info.swift in Sources */,
 				111EFD741C909DB300094F1E /* LoginViewController.swift in Sources */,
+				113B40AA1C9D588800E0E7DF /* ProfileViewController.swift in Sources */,
 				111EFD781C90A52600094F1E /* HtmlParser.swift in Sources */,
 				111EFD801C94A0F800094F1E /* InfoCells.swift in Sources */,
 				111EFD7C1C920F8D00094F1E /* Services.swift in Sources */,

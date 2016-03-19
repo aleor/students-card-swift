@@ -48,7 +48,8 @@ public class Services {
                 }
             }
             else {
-                UIHelper.displayAlert("Ошибка", alertMessage: "Ошибка при получении данных", viewController: viewController)
+                // no result -> most probably no connection
+                //UIHelper.displayAlert("Ошибка", alertMessage: "Ошибка при получении данных", viewController: viewController)
                 completionHandler(nil)
                 return
             }

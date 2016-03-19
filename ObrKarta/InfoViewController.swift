@@ -24,8 +24,6 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
     
     // MARK: - Table view data source
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         table.delegate = self
@@ -38,6 +36,7 @@ class InfoViewController: UIViewController,UITableViewDataSource, UITableViewDel
         self.table.addSubview(refreshControl)
         
         self.setup()
+        self.table.reloadData()
         }
 
     
